@@ -14,15 +14,23 @@ export class ErrorMsgDirective implements OnInit{
   htmlElement: ElementRef<HTMLElement>;
 
   @Input() set color(valor: string) {
-    this.htmlElement.nativeElement.style.color = valor;
     this._color = valor;
+    this.setColor();
+  }
+
+  @Input() set valido(valor: boolean) {
+    if ( valor ) {
+      this.htmlElement.nativeElement.classList.add('hidden');
+    } else {
+      this.htmlElement.nativeElement.classList.remove('hidden');
+    }
   }
 
   // @Input() mensaje = 'Este campo es requerido';
 
   @Input() set mensaje(texto: string) {
-    this.htmlElement.nativeElement.innerText = texto;
     this._mensaje = texto;
+    this.setMensaje();
   }
 
   constructor( private el: ElementRef<HTMLElement> ) {
@@ -35,24 +43,22 @@ export class ErrorMsgDirective implements OnInit{
 
   ngOnInit(): void {
 
-    this.htmlElement.nativeElement.classList.add('form-text');
-
-    // this.setColor();
-    // this.setMensaje();
-    // this.setClase();
+    this.setColor();
+    this.setMensaje();
+    this.setClase();
 
   }
 
-  // setColor(): void {
-  //   this.htmlElement.nativeElement.style.color = this._color;
-  // }
+   setColor(): void {
+     this.htmlElement.nativeElement.style.color = this._color;
+   }
 
-  // setMensaje(): void {
-  //   this.htmlElement.nativeElement.innerText = this._mensaje;
-  // }
+   setMensaje(): void {
+     this.htmlElement.nativeElement.innerText = this._mensaje;
+   }
 
-  // setClase(): void {
-  //   this.htmlElement.nativeElement.classList.add('form-text');
-  // }
+   setClase(): void {
+     this.htmlElement.nativeElement.classList.add('form-text');
+   }
 
 }
