@@ -18,7 +18,8 @@
 
         <div class="col-auto">
             <span   appErrorMsg
-                    color="red"
+                    [mensaje]="texto1"
+                    [color]="color"
                     *ngIf="tieneError('nombre')"></span>
         </div>
 
@@ -26,8 +27,13 @@
 
     <div class="row mt-5">
         <div class="col">
-            <button type="submit" class="btn btn-primary float-end">
-                Guardar
+            <button type="submit" class="btn btn-primary float-end"
+                    (click)="cambiarTexto()">
+                    Cambiar texto del Error
+            </button>
+            <button type="submit" class="btn btn-success"
+            (click)="cambiarColor()">
+                Cambiar color del Error
             </button>
         </div>
     </div>
